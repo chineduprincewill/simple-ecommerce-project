@@ -46,6 +46,13 @@ class Home extends Component {
       }
 
 
+      getImage = (id) => {
+
+        let imgName = (id % 20) + 1;
+        return `http://localhost:4242/images/products/${imgName}.jpg`;
+      }
+
+
     render() {
 
         const data = Array.from(this.props.allproducts);
@@ -59,8 +66,8 @@ class Home extends Component {
                     
                     {data.map(product => (
                      <div className="col-sm-3 card m-1" key={product.id}>
-                        <img src="..." className="card-img-top" alt="..." />
-                        <div className="card-body">
+                        <img src={this.getImage(product.id)}  className="card-img-top" alt="..." height="250px"/>
+                        <div className="card-body mb-0">
                             <p className="card-title">{product.name}</p>
                             <p className="text text-danger">
                                 <span className="mr-5">

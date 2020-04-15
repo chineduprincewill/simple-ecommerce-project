@@ -37,10 +37,14 @@ class Product extends Component {
       }
     }
 
+
   render() {
     
     const { id, name, description, regular_price, discount_price } = this.props.product;
-    const imgName = `/images/products/${name}`;
+
+    const imgID = (id % 20) + 1;
+
+    const imgName = `http://localhost:4242/images/products/${imgID}.jpg`;
     return (
       <div className="container">
           <div className="col-md-12 mt-3">

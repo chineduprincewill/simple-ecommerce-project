@@ -16,6 +16,12 @@ class Cart extends Component {
       this.props.getCartItems();
   }
 
+  getImage = (id) => {
+
+    let imgName = (id % 20) + 1;
+    return `http://localhost:4242/images/products/${imgName}.jpg`;
+  }
+
   render() {
     
     const data = Array.from(this.props.cartitems);
@@ -25,10 +31,10 @@ class Cart extends Component {
         <div className="col-md-12 mt-5">
             {data.map(cartitem => (
                 <div className="row border rounded m-3" key={cartitem.id}>
-                    <div className="col-md-2">
-                        <img src="..." className="img-thumbnail" width="100%" alt="..." />
+                    <div className="col-md-1">
+                        <img src={this.getImage(cartitem.id)} className="img-thumbnail" width="100%" alt="..." />
                     </div>
-                    <div className="col-md-7">
+                    <div className="col-md-8">
                         <p>{cartitem.name}</p>
                         <p>#{cartitem.discount_price}.00</p>
                     </div>
