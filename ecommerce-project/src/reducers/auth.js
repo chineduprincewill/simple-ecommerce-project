@@ -1,4 +1,4 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS } from '../actions/types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, GET_USER } from '../actions/types';
 
 const initialState = {
     authorization_token: localStorage.getItem("token"),
@@ -33,6 +33,11 @@ export default function(state=initialState, action){
                 ...state,
                 ...action.payload,
                 isAuthenticated: true
+            }
+        case GET_USER:
+            return{
+                ...state,
+                user: action.payload
             }
         default:
             return state;

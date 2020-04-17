@@ -1,22 +1,21 @@
-import { GET_PRODUCTS, GET_PRODUCT } from '../actions/types';
+import { GET_ORDER_HISTORY, ORDER_HISTORY_FAILED } from '../actions/types';
 
 const initialState = {
-    allproducts: [],
-    product: {}
+    orders: []
 };
 
 
 export default function (state = initialState, action){
     switch(action.type){
-        case GET_PRODUCTS:
+        case GET_ORDER_HISTORY:
             return{
                 ...state,
-                allproducts: action.payload.products
+                orders:action.payload
             }
-        case GET_PRODUCT:
+        case ORDER_HISTORY_FAILED:
             return{
                 ...state,
-                product: action.payload.product
+                payload: action.payload
             }
         default:
             return state;

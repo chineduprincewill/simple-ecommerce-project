@@ -12,6 +12,7 @@ import Dashboard from './components/pages/Dashboard';
 import Product from './components/pages/Product';
 import Cart from './components/pages/Cart';
 import Checkout from './components/pages/Checkout';
+import Order from './components/pages/Order';
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/cart" component={Cart} />
             <PrivateRoute exact path="/checkout" component={Checkout} />
+            <PrivateRoute exact path="/order" component={Order} />
           </Switch>
         </Router>
       </Provider>

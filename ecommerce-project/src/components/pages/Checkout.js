@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getCartItems, deleteItem } from '../../actions/products';
+import { getCartItems, deleteItem, checkout } from '../../actions/cart';
 
 class Checkout extends Component {
 
   static propTypes = {
     cartitems: PropTypes.array.isRequired,
     deleteItem: PropTypes.func.isRequired,
-    getCartItems: PropTypes.func.isRequired
+    getCartItems: PropTypes.func.isRequired,
+    checkout: PropTypes.func.isRequired
   }
 
   componentDidMount(){
       this.props.getCartItems();
+  
+    }
+
+  onCheckout = () => {
+
+    const items = Array.from(this.props.cartitems);
+
+    const prods_ids = [];
+
+    items.forEach(function(item){
+
+        prods_ids.push(item.id);
+
+        //this.props.checkout(data);
+    });
+
+    const cartData = {
+        product_ids: prods_ids
+    }
+
+    this.props.checkout(cartData);
+
+    this.props.history.push('/');
   }
 
   render() {
@@ -21,7 +46,7 @@ class Checkout extends Component {
 
     return (
       <div className="container col-md-12">
-        <div class="row m-auto">
+        <div className="row m-auto">
             <div className="col-md-4 mt-5 mr-5">
                 <p className="text text-primary">You are about to pay for the following items:</p>
                 <ul className="">
@@ -57,7 +82,13 @@ class Checkout extends Component {
                     </div>
 
                     <div className="form-group">
-                        <button type="submit" className="btn btn-success btn-block text-light float-right mb-3">Complete</button>
+                        <button 
+                            type="submit" 
+                            className="btn btn-success btn-block text-light float-right mb-3"
+                            onClick={this.onCheckout}
+                        >
+                            Complete
+                        </button>
                     </div>
                 </form>
             </div>
@@ -68,7 +99,7 @@ class Checkout extends Component {
 }
 
 const mapStateToProps = state => ({
-    cartitems: state.products.cartitems
+    cartitems: state.cart.cartitems
 })
 
-export default connect(mapStateToProps, { getCartItems, deleteItem })(Checkout);
+export default connect(mapStateToProps, { getCartItems, deleteItem, checkout })(withRouter(Checkout));

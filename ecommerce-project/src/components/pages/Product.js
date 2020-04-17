@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getProduct, addToCart } from '../../actions/products';
+import { getProduct } from '../../actions/products';
+import { addToCart } from '../../actions/cart';
 
 
 class Product extends Component {

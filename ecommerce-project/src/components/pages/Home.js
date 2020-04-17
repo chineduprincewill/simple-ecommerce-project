@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getProducts, getProduct, addToCart } from '../../actions/products';
+import { getProducts, getProduct } from '../../actions/products';
+import { addToCart } from '../../actions/cart';
 
 
 class Home extends Component {
@@ -42,6 +43,7 @@ class Home extends Component {
             }
     
             this.props.addToCart(data);
+            alert("Product added to cart");
           }
       }
 

@@ -18,9 +18,15 @@ class Header extends Component {
 
         const authLinks = (
             <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-              <span className="navbar-text mr-3">
-                <strong>{user ? `Welcome ${user.names}` : ""}</strong>
-              </span>
+              <div className="dropdown mr-3">
+                <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i className="fa fa-user"></i>
+                </button>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <span className="dropdown-item">{user ? `${user.names}` : ""}</span>
+                  <span className="dropdown-item">{user ? `${user.email}` : ""}</span>
+                </div>
+              </div>
               <li className="nav-item">
                 <Link to="/"
                   className="nav-link btn btn-primary btn-sm text-light mr-3"
@@ -33,6 +39,13 @@ class Header extends Component {
                   className="nav-link btn btn-link text-warning btn-sm mr-3"
                 >
                   <i className="fa fa-shopping-cart fa-2x"></i>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/order"
+                  className="nav-link btn btn-link text-primary btn-sm mr-3"
+                >
+                  Orders
                 </Link>
               </li>
               <li className="nav-item">
