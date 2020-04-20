@@ -39,6 +39,26 @@ class Register extends Component {
 
     }
 
+
+    getErrors = () => {
+        let errVal = "";
+
+        const { errors } = this.props;
+
+        if(errors){
+            if(errors.statusText === "Conflict"){
+                errVal = "Email already exists!";
+            }
+
+            if(errors.statusText === "Bad Request"){
+                errVal = "All fields must be filled and ensure your password has a minimum of 8 characters!";
+            }
+        }
+
+        return errVal;
+    }
+
+
     render() {
 
         const { names, email, password } = this.state;
@@ -50,12 +70,7 @@ class Register extends Component {
                 <div className="card card-body mt-5">
                 <h2 className="text-center">Register</h2>
                 <p className="text text-danger text-center">
-                    { 
-                    errors.statusText === "Conflict" ? "Email already exists!" : "" 
-                    }
-                    {
-                        errors.statusText === "Bad Request" ? "All fields must be filled and ensure your password has a minimum of 8 characters" : ""
-                    }
+                   {this.getErrors}
                 </p>
                 <p className="text text-success text-center">{this.props.msg}</p>
                 <form onSubmit={this.onSubmit}>

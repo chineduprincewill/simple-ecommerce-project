@@ -35,6 +35,7 @@ class Product extends Component {
         }
 
         this.props.addToCart(data);
+        alert("Product added to cart");
       }
     }
 

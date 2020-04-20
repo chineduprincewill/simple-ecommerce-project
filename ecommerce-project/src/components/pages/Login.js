@@ -36,6 +36,25 @@ class Login extends Component {
         this.props.login(userdata);
     }
 
+
+    getErrors = () => {
+        let errVal = "";
+
+        const { errors } = this.props;
+
+        if(errors){
+            if(errors.statusText === "Unauthorized"){
+                errVal = "Email or password not correct!";
+            }
+
+            if(errors.statusText === "Bad Request"){
+                errVal = "All fields must be filled!";
+            }
+        }
+
+        return errVal;
+    }
+
     render() {
 
         if(this.props.isAuthenticated){
@@ -44,19 +63,12 @@ class Login extends Component {
 
         const { email, password } = this.state;
 
-        const { errors } = this.props;
-
         return (
             <div className="col-md-4 m-auto">
                 <div className="card card-body mt-5">
                     <h2 className="text-center">Login</h2>
                     <p className="text text-danger text-center">
-                        { 
-                        errors.statusText === "Unauthorized" ? "Email or password not correct!" : "" 
-                        }
-                        {
-                            errors.statusText === "Bad Request" ? "All fields must be filled!" : ""
-                        }
+                        {this.getErrors}
                     </p>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
